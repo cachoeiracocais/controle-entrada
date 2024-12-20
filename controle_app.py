@@ -6,6 +6,17 @@ import hashlib
 import unicodedata
 import re  # Para validação e formatação do CPF
 
+import os
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
+
+# Caminhos e chaves sensíveis
+google_credentials_path = os.getenv("GOOGLE_CREDENTIALS_PATH")
+usuarios_file = os.getenv("USUARIOS_FILE")
+
+
 # Configuração inicials
 st.set_page_config(page_title="📝 Gerenciamento de Entrada e Saída", layout="wide")
 st.title("☀️🏕️ Seja Bem-Vindo | Cachoeira de Cocais Queda do Véu")
@@ -18,7 +29,7 @@ def hash_senha(senha):
 
 # Conexão com Google Sheets
 def conectar_google_sheets(sheet_name):
-    gc = pygsheets.authorize(service_file='credenciais.json')
+    gc = pygsheets.authorize(service_file = google_credentials_path)
     sh = gc.open(sheet_name)
     worksheet = sh[0]  # Primeira aba da planilha
     return worksheet
