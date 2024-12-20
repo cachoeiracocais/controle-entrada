@@ -1,0 +1,6 @@
+# Ignorar arquivos sensíveis e temporários
+usuarios.txt
+credentials.json
+.env
+__pycache__/
+*.pyc
